@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morif Lab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('morainelake.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            background: #f9f9f9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Case Studies */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .case-study {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .case-study:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .case-study-image {
+            height: 200px;
+            background: #ddd;
+            position: relative;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .case-study-content {
+            padding: 25px;
+        }
+        
+        .case-study h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .case-study-tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Team Section */
+        .team {
+            background: #f9f9f9;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .team-photo {
+            height: 250px;
+            background: #ddd;
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 25px;
+        }
+        
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .team-title {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .team-bio {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .social-links li {
+            margin: 0 10px;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 20px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-text, .about-image {
+                flex: 100%;
+                padding: 0;
+                margin-bottom: 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Morif<span>Lab</span></a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Enterprise Data & Analytics Solutions That Drive Results</h1>
+                <p>We transform complex data challenges into strategic advantages through advanced analytics, AI, and optimization.</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Turning Data Into Actionable Insights</h3>
+                    <p>Morif Lab is a proudly Canadian boutique data consultancy located in Toronto. Founded by industry veterans, we specialize in addressing complex business challenges through innovative, data-driven solutions.</p>
+                    <p>From petabyte-scale analytics to cutting-edge AI implementations, we have successfully delivered transformative projects across the healthcare, finance, energy, and public sectors. Our lean, expert team manages the entire data lifecycle, ensuring that innovation, reliability, and ethical practices are at the forefront of every project.</p>
+                </div>
+                <div class="about-image">
+                    <img src="office.jpg" alt="Morif Lab Office in Toronto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Engineering & Architecture</h3>
+                    <p>Custom ETL pipelines, data platforms, and cloud infrastructure designed for performance, security, and scalability. We build robust data foundations that enable analytics excellence.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>From predictive models to generative AI applications, we develop and deploy advanced ML solutions that solve real business problems and deliver measurable ROI.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Visualization</h3>
+                    <p>Transforming raw data into actionable insights through custom dashboards, reports, and analytics solutions that enable data-driven decision making across your organization.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Mathematical Optimization</h3>
+                    <p>Advanced optimization techniques to solve complex operational challenges, from supply chain and resource allocation to portfolio management and risk mitigation.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Data Strategy & Governance</h3>
+                    <p>Comprehensive data strategies, roadmaps, and governance frameworks that align with business objectives and ensure data quality, security, and compliance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Generative AI Solutions</h3>
+                    <p>Custom LLM applications, RAG implementations, and agentic workflows that leverage the latest in generative AI to transform business processes and user experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Case Studies</h2>
+            </div>
+            <div class="case-studies-grid">
+                <div class="case-study">
+                    <div class="case-study-image">
+                        <img src="hospital.jpg" alt="Healthcare data platform">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Healthcare Data Transformation</h3>
+                        <p>Built a comprehensive data platform for a specialized hospital, integrating 10+ data sources with automated ETL pipelines, enabling analytics and reporting, and improved patient care. Enabled successful migration of legacy electronic medical record system to a HL7 compliant EPIC implementation.</p>
+                        <div class="case-study-tags">
+                            <span class="case-study-tag">Healthcare</span>
+                            <span class="case-study-tag">ETL</span>
+                            <span class="case-study-tag">Data Platform</span>
+                            <span class="case-study-tag">HL7</span>
+                            <span class="case-study-tag">EPIC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image">
+                        <img src="covid.jpg" alt="COVID-19 prediction platform">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>UN COVID-19 Prediction Platform</h3>
+                        <p>Developed a groundbreaking COVID-19 prediction and decision platform for a United Nations agency, deployed in 40+ countries to support global pandemic response efforts.</p>
+                        <div class="case-study-tags">
+                            <span class="case-study-tag">Public Sector</span>
+                            <span class="case-study-tag">Predictive Analytics</span>
+                            <span class="case-study-tag">Global Impact</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image">
+                        <img src="stocks.jpg" alt="AI Powered Investment Platform">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Financial Intelligence Platform</h3>
+                        <p>Developed a comprehensive financial intelligence solution combining Gen AI-powered APIs for market sentiment analysis with an advanced optimization model for managing $55+ billion in foreign exchange exposures. The platform processes large volumes of news data to extract investment signals while enhancing risk management through task-specific LLMs using retrieval augmented generation (RAG).</p>
+                        <div class="case-study-tags">
+                            <span class="case-study-tag">Finance</span>
+                            <span class="case-study-tag">Optimization</span>
+                            <span class="case-study-tag">Risk Management</span>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-content">
+                <p>Our founding team brings together decades of experience in data science, engineering, and optimization. With backgrounds spanning technology leadership roles at major enterprises and groundbreaking work in AI and analytics, we've:</p>
+                <ul style="list-style: none; margin: 20px 0; padding: 0;">
+                    <li style="margin: 15px 0;"><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>Led development of mission-critical data platforms processing petabytes of data</li>
+                    <li style="margin: 15px 0;"><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>Received recognition from the UN for contributions to global COVID-19 analytics</li>
+                    <li style="margin: 15px 0;"><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>Pioneered advanced optimization solutions managing billions in assets</li>
+                    <li style="margin: 15px 0;"><i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>Developed cutting-edge AI applications across multiple industries</li>
+                </ul>
+                <p>Our lean team structure allows us to maintain agility while delivering enterprise-grade solutions, combining deep technical expertise with practical business acumen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h3 style="font-size: 2.2rem; margin-bottom: 25px;">Ready to Transform Your Data Journey?</h3>
+                    <p style="font-size: 1.2rem; margin-bottom: 35px; color: var(--text-light);">From complex analytics to AI deployment, we're here to help you unlock the full potential of your data. Let's start a conversation about your unique challenges and objectives.</p>
+                    <div style="margin: 40px 0;">
+                        <a href="mailto:hello@moriflab.com" class="btn" style="font-size: 1.3rem; padding: 15px 40px;">
+                            <i class="fas fa-envelope" style="margin-right: 12px;"></i>Get in Touch
+                        </a>
+                    </div>
+                    <div style="margin-top: 30px; color: var(--text-light);">
+                        <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>Toronto, Canada</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Morif Lab</h3>
+                    <p>Transforming complex data challenges into strategic advantages through advanced analytics, AI, and optimization.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Data Engineering</a></li>
+                        <li><a href="#services">AI & Machine Learning</a></li>
+                        <li><a href="#services">Analytics & Visualization</a></li>
+                        <li><a href="#services">Mathematical Optimization</a></li>
+                        <li><a href="#services">Data Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="#"><i class="fab fa-medium"></i> Medium</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Morif Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(44, 62, 80, 0.95)';
+                header.style.padding = '15px 0';
+            } else {
+                header.style.background = 'var(--primary)';
+                header.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
